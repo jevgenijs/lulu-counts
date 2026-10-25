@@ -85,8 +85,10 @@ struct PracticeView: View {
             .padding(.horizontal, 24)
         } else {
             VStack(spacing: 10) {
-                ScrollView { questionPane(maxVisualHeight: size.height * (q.kind == .keypad ? 0.22 : 0.3)).padding(.top, 4) }
-                    .scrollBounceBehavior(.basedOnSize)
+                GeometryReader { g in
+                    ScrollView { questionPane(maxVisualHeight: size.height * (q.kind == .keypad ? 0.22 : 0.3)).padding(.top, 4).frame(minHeight: g.size.height) }
+                        .scrollBounceBehavior(.basedOnSize)
+                }
                 answerPane(q, height: size.height * 0.55)
                     .frame(maxWidth: 520)
             }
