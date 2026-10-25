@@ -42,7 +42,7 @@ Mastered = a 3-star round that reached level 2 or 3. Quick Game uses each topic'
 
 ```sh
 xcodegen generate
-xcodebuild test -scheme LuLuCounts -destination 'platform=iOS Simulator,name=iPhone 16e'   # 16 tests
+xcodebuild test -scheme LuLuCounts -destination 'platform=iOS Simulator,name=iPhone 16e'   # 19 tests
 tools/redeploy.sh && tools/shot.sh phone name -debugRoute practice:times -debugLevel 2 -debugSeed 3   # then look at /tmp/claude-501/shots
 ```
 Debug launch args: `-debugRoute lesson:<id>|practice:<id>|quick`, `-debugPage N`, `-debugGrade N`, `-debugLevel N`, `-debugSeed N`, `-debugAnswers N` (answer first N correctly; 8 = result screen), `-debugWrong 1`, `-language ru|lv|en`.
