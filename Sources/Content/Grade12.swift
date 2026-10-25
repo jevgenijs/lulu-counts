@@ -26,7 +26,7 @@ enum Grade12 {
         Topic(id: "sub20", grade: 1, title: "Taking away to 20", symbol: "minus.circle.fill", color: .pink, lesson: [
             LessonPage(body: "Taking away means some go away. Start with 8, take away 3, and 5 are left.",
                        visual: .takeAway(total: 8, crossed: 3, kind: .star)),
-            LessonPage(body: "On a number line, jump backward: 14 − 6 = 8. Jump to 10 first, then 4 more.",
+            LessonPage(body: "On a number line, jump backward: 14 − 6 = 8. Jump to 10 first, then 2 more.",
                        visual: .numberLine(NumberLineSpec(min: 6, max: 15, points: [14, 8], jumps: [Jump(from: 14, to: 10, label: "−4"), Jump(from: 10, to: 8, label: "−2")]))),
             LessonPage(body: "Adding and taking away are partners: 5 + 3 = 8, so 8 − 3 = 5.",
                        visual: .lines([StyledLine(text: "5 + 3 = 8"), StyledLine(text: "8 − 3 = 5", emphasis: true)])),

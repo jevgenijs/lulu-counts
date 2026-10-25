@@ -329,7 +329,7 @@ enum Grade56 {
             if rng.chance(0.5) {
                 return Build.keypad(b * k, level: level,
                                     instruction: t("For every %@ circles there are %@ squares. How many squares go with %@ circles?", a, b, a * k), prompt: nil,
-                                    hint: t("%@ circles is %@ times as many as %@.", a * k, k, a))
+                                    hint: t("Circles: %@ is %@ × %@.", a * k, k, a))
             }
             var wrong = ["\(b):\(a)", "\(a):\(b + 1)", "\(a * k):\(b * k + 1)", "\(a + 1):\(b)"]
             for m in 2..<k where k % m == 0 { wrong.append("\(a * m):\(b * m)") }
