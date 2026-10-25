@@ -20,7 +20,7 @@ enum Grade56 {
             LessonPage(body: "Decimals are parts of 10 and 100. This grid has 100 squares and 30 are shaded: 30 out of 100 is 0.3.",
                        visual: .hundredGrid(filled: 30)),
             LessonPage(body: "Between 0 and 1 there are ten tenths: 0.1, 0.2, 0.3 ... The point marks 0.7.",
-                       visual: .numberLine(NumberLineSpec(min: 0, max: 10, tick: 1, labelEvery: 1, divisor: 10, points: [7]))),
+                       visual: .numberLine(NumberLineSpec(min: 0, max: 10, tick: 1, labelEvery: 2, divisor: 10, points: [7]))),
             LessonPage(body: "To add decimals, line up the decimal points. Then add like whole numbers.",
                        visual: .column(top: "2.35", bottom: "1.40", op: "+", carries: [], answer: "3.75")),
             LessonPage(body: "Times 10 moves every digit one place to the left. Times 100 moves two places.",
@@ -163,7 +163,7 @@ enum Grade56 {
                                     hint: t("The whole grid is 1. Each column of 10 squares is one tenth."))
             }
             return Build.choice(c, options: Build.strings(c, wrong: wrong, rng: &rng), level: level,
-                                instruction: t("What number is marked?"), visual: .numberLine(NumberLineSpec(min: 0, max: 10, divisor: 10, labelPoints: false, points: [k])),
+                                instruction: t("What number is marked?"), visual: .numberLine(NumberLineSpec(min: 0, max: 10, labelEvery: 5, divisor: 10, labelPoints: false, points: [k])),
                                 hint: t("There are 10 steps from 0 to 1. Each step is 0.1."))
         case 2:
             if rng.chance(0.4) {

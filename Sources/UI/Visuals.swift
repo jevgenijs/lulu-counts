@@ -89,6 +89,7 @@ private struct ObjectsView: View {
             }
         }
         .aspectRatio(CGFloat(cols) / CGFloat(rows), contentMode: .fit)
+        .frame(maxWidth: CGFloat(cols) * 54)
     }
 }
 
@@ -144,6 +145,7 @@ private struct ArrayView: View {
         .padding(8)
         .background(Theme.ink.opacity(0.06), in: RoundedRectangle(cornerRadius: 12))
         .aspectRatio(CGFloat(cols) / CGFloat(rows), contentMode: .fit)
+        .frame(maxWidth: CGFloat(cols) * 50 + 16)
     }
 }
 
@@ -160,7 +162,10 @@ private struct NumberLineView: View {
     }
 
     var body: some View {
-        Canvas { ctx, size in
+        Canvas { ctx, realSize in
+            let k = max(0.9, realSize.width / 380)   // marks and text grow with the view
+            ctx.scaleBy(x: k, y: k)
+            let size = CGSize(width: realSize.width / k, height: realSize.height / k)
             let span = CGFloat(spec.max - spec.min)
             let left: CGFloat = 24, right = size.width - 24
             let y = size.height * (spec.jumps.isEmpty ? 0.45 : 0.68)
@@ -172,7 +177,7 @@ private struct NumberLineView: View {
 
             var v = spec.min
             var n = 0
-            let fontSize = max(11, min(20, (right - left) / CGFloat(max(1, (spec.max - spec.min) / spec.tick)) * 0.8))
+            let fontSize = max(12, min(20, (right - left) / CGFloat(max(1, (spec.max - spec.min) / spec.tick)) * 0.62))
             while v <= spec.max {
                 let major = n % spec.labelEvery == 0
                 var tick = Path()
@@ -375,8 +380,8 @@ private struct ShapeView: View {
             case .rectangle: path = Path(roundedRect: CGRect(x: c.x - r * 1.0, y: c.y - r * 0.6, width: r * 2.0, height: r * 1.2), cornerRadius: 3)
             case .rhombus:
                 var p = Path()
-                p.move(to: CGPoint(x: c.x - r * 0.45, y: c.y - r * 0.75)); p.addLine(to: CGPoint(x: c.x + r * 0.95, y: c.y - r * 0.75))
-                p.addLine(to: CGPoint(x: c.x + r * 0.45, y: c.y + r * 0.75)); p.addLine(to: CGPoint(x: c.x - r * 0.95, y: c.y + r * 0.75))
+                p.move(to: CGPoint(x: c.x - r * 0.35, y: c.y - r * 0.55)); p.addLine(to: CGPoint(x: c.x + r * 0.85, y: c.y - r * 0.55))
+                p.addLine(to: CGPoint(x: c.x + r * 0.35, y: c.y + r * 0.55)); p.addLine(to: CGPoint(x: c.x - r * 0.85, y: c.y + r * 0.55))
                 p.closeSubpath(); path = p
             }
             ctx.fill(path, with: .color(ShapeView.colors[kind] ?? Theme.blue))
@@ -440,6 +445,7 @@ private struct RatioView: View {
             row(b, "square.fill", Theme.blue, n)
         }
         .aspectRatio(CGFloat(n) / 2.2, contentMode: .fit)
+        .frame(maxWidth: CGFloat(n) * 56)
     }
     private func row(_ k: Int, _ symbol: String, _ color: Color, _ n: Int) -> some View {
         HStack(spacing: 4) {
